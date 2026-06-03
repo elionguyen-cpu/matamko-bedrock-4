@@ -28,7 +28,10 @@ function matamko_register_layout_post_type(): void
             'show_ui'             => true,
             'show_in_menu'        => 'matamko-theme-builder',
             'exclude_from_search' => true,
-            'publicly_queryable'  => false,
+            'publicly_queryable'  => true,
+            'has_archive'         => false,
+            'rewrite'             => false,
+            'query_var'           => true,
             'show_in_rest'        => true,
             'supports'            => ['title'],
             'capability_type'     => 'page',
@@ -306,8 +309,8 @@ function matamko_find_matching_layout_id(): int
             continue;
         }
 
-        $object_ids = matamko_parse_layout_object_ids((string) get_post_meta($layout->ID, '_matamko_object_ids', true));
-        $is_exact   = in_array((string) $current['object_id'], $object_ids, true);
+        $object_ids  = matamko_parse_layout_object_ids((string) get_post_meta($layout->ID, '_matamko_object_ids', true));
+        $is_exact    = in_array((string) $current['object_id'], $object_ids, true);
         $is_wildcard = in_array('*', $object_ids, true) || $object_ids === [];
 
         if (! $is_exact && ! $is_wildcard) {
@@ -352,7 +355,7 @@ function matamko_layout_override(string $template): string
 
     $layout_id = matamko_find_matching_layout_id();
 
-    if ($layout_id <= 0 || matamko_render_elementor_content($layout_id) === '') {
+    if ($layout_id <= 0) {
         return $template;
     }
 

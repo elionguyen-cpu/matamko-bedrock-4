@@ -12,6 +12,10 @@ add_action('admin_menu', 'matamko_register_theme_builder_menu');
 add_action('admin_menu', 'matamko_register_theme_settings_page');
 add_action('after_switch_theme', 'matamko_activate_supported_elementor_post_types');
 add_action('admin_init', 'matamko_activate_supported_elementor_post_types');
+add_filter('template_include', 'matamko_builder_post_preview_template', 50);
+add_filter('wpseo_sitemap_exclude_post_type', 'matamko_exclude_builder_post_types_from_yoast_sitemap', 10, 2);
+add_filter('wpseo_accessible_post_types', 'matamko_filter_yoast_accessible_post_types');
+add_filter('wp_robots', 'matamko_noindex_builder_post_types');
 
 function matamko_theme_setup(): void
 {
@@ -104,10 +108,70 @@ function matamko_render_theme_settings_page(): void
         wp_die(esc_html__('You do not have permission to access this page.', 'matamko'));
     }
 
+    $theme = wp_get_theme();
+
     echo '<div class="wrap">';
     echo '<h1>' . esc_html__('MATAMKO Settings', 'matamko') . '</h1>';
-    echo '<p>' . esc_html__('This theme is configured for Bedrock, Elementor, and native WordPress builder content.', 'matamko') . '</p>';
+    echo '<p>' . esc_html__('Theme integration status for Bedrock, Elementor, Yoast SEO, and MATAMKO Builder content.', 'matamko') . '</p>';
+    echo '<table class="widefat striped" style="max-width: 920px;">';
+    echo '<tbody>';
+    matamko_render_settings_row(esc_html__('Theme', 'matamko'), esc_html($theme->get('Name') . ' ' . $theme->get('Version')));
+    matamko_render_settings_row(esc_html__('Active stylesheet', 'matamko'), esc_html(get_stylesheet()));
+    matamko_render_settings_row(esc_html__('WP_DEFAULT_THEME', 'matamko'), defined('WP_DEFAULT_THEME') ? esc_html((string) WP_DEFAULT_THEME) : esc_html__('Not defined', 'matamko'));
+    matamko_render_settings_row(esc_html__('Elementor', 'matamko'), did_action('elementor/loaded') > 0 ? esc_html__('Loaded', 'matamko') : esc_html__('Not loaded', 'matamko'));
+    matamko_render_settings_row(esc_html__('Elementor builder CPT support', 'matamko'), esc_html(implode(', ', matamko_get_supported_elementor_builder_post_types())));
+    matamko_render_settings_row(esc_html__('Yoast SEO builder exclusion', 'matamko'), esc_html__('Headers, footers, and layouts are excluded from Yoast sitemap/access lists and marked noindex on direct singular requests.', 'matamko'));
+    matamko_render_settings_row(esc_html__('Active header', 'matamko'), matamko_get_settings_builder_link('theme_header'));
+    matamko_render_settings_row(esc_html__('Active footer', 'matamko'), matamko_get_settings_builder_link('theme_footer'));
+    matamko_render_settings_row(esc_html__('Active layouts', 'matamko'), esc_html((string) matamko_count_active_builder_posts('theme_layout')));
+    echo '</tbody>';
+    echo '</table>';
     echo '</div>';
+}
+
+function matamko_render_settings_row(string $label, string $value): void
+{
+    echo '<tr>';
+    echo '<th scope="row" style="width: 260px;">' . esc_html($label) . '</th>';
+    echo '<td>' . wp_kses_post($value) . '</td>';
+    echo '</tr>';
+}
+
+function matamko_get_settings_builder_link(string $post_type): string
+{
+    $post_id = matamko_get_active_builder_post_id($post_type);
+
+    if ($post_id <= 0) {
+        return esc_html__('None', 'matamko');
+    }
+
+    $edit_link = get_edit_post_link($post_id);
+    $title     = get_the_title($post_id);
+
+    if (! is_string($edit_link) || $edit_link === '') {
+        return esc_html($title !== '' ? $title : '#' . $post_id);
+    }
+
+    return '<a href="' . esc_url($edit_link) . '">' . esc_html($title !== '' ? $title : '#' . $post_id) . '</a>';
+}
+
+function matamko_count_active_builder_posts(string $post_type): int
+{
+    $posts = get_posts(
+        [
+            'post_type'              => $post_type,
+            'post_status'            => 'publish',
+            'posts_per_page'         => -1,
+            'fields'                 => 'ids',
+            'meta_key'               => '_matamko_is_active',
+            'meta_value'             => '1',
+            'no_found_rows'          => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+        ],
+    );
+
+    return count($posts);
 }
 
 function matamko_activate_supported_elementor_post_types(): void
@@ -118,13 +182,24 @@ function matamko_activate_supported_elementor_post_types(): void
         $post_types = ['page', 'post'];
     }
 
-    foreach (['theme_header', 'theme_footer', 'theme_layout'] as $post_type) {
+    foreach (matamko_builder_post_types() as $post_type) {
         if (! in_array($post_type, $post_types, true)) {
             $post_types[] = $post_type;
         }
     }
 
     update_option('elementor_cpt_support', array_values($post_types));
+}
+
+function matamko_get_supported_elementor_builder_post_types(): array
+{
+    $post_types = get_option('elementor_cpt_support');
+
+    if (! is_array($post_types)) {
+        return [];
+    }
+
+    return array_values(array_intersect(matamko_builder_post_types(), $post_types));
 }
 
 function matamko_is_elementor_loaded(): bool
@@ -177,6 +252,65 @@ function matamko_is_elementor_editing_builder_post(string $post_type): bool
     $is_preview = isset($_REQUEST['elementor-preview']);
 
     return $is_admin_editor || $is_preview;
+}
+
+function matamko_is_builder_post_type(string $post_type): bool
+{
+    return in_array($post_type, matamko_builder_post_types(), true);
+}
+
+function matamko_builder_post_types(): array
+{
+    return ['theme_header', 'theme_footer', 'theme_layout'];
+}
+
+function matamko_exclude_builder_post_types_from_yoast_sitemap(bool $excluded, string $post_type): bool
+{
+    if (matamko_is_builder_post_type($post_type)) {
+        return true;
+    }
+
+    return $excluded;
+}
+
+function matamko_filter_yoast_accessible_post_types(array $post_types): array
+{
+    foreach (matamko_builder_post_types() as $post_type) {
+        unset($post_types[$post_type]);
+    }
+
+    return $post_types;
+}
+
+function matamko_noindex_builder_post_types(array $robots): array
+{
+    if (! is_singular(matamko_builder_post_types())) {
+        return $robots;
+    }
+
+    $robots['noindex']  = true;
+    $robots['nofollow'] = true;
+
+    unset($robots['index'], $robots['follow']);
+
+    return $robots;
+}
+
+function matamko_builder_post_preview_template(string $template): string
+{
+    if (! is_singular()) {
+        return $template;
+    }
+
+    $post_type = get_post_type();
+
+    if (! is_string($post_type) || ! matamko_is_builder_post_type($post_type)) {
+        return $template;
+    }
+
+    $preview_template = locate_template('template-parts/elementor-builder-preview.php');
+
+    return $preview_template !== '' ? $preview_template : $template;
 }
 
 function matamko_get_active_builder_post_id(string $post_type): int
