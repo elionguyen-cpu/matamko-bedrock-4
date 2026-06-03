@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "139dcc1c0ae82beae7fe9d9f50a87537",
+    "content-hash": "856f80e173e42aaab2c5513d6e2fd133",
     "packages": [
         {
             "name": "composer/installers",
@@ -1042,30 +1042,314 @@
             "time": "2025-12-27T19:49:13+00:00"
         },
         {
-            "name": "wp-theme/twentytwentyfive",
-            "version": "1.5",
+            "name": "wp-plugin/advanced-custom-fields",
+            "version": "6.8.3",
             "source": {
                 "type": "svn",
-                "url": "https://themes.svn.wordpress.org/twentytwentyfive/",
-                "reference": "1.5"
+                "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
+                "reference": "tags/6.8.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/twentytwentyfive.1.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.8.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0|~2.0"
             },
-            "type": "wordpress-theme",
+            "type": "wordpress-plugin",
             "notification-url": "https://wp-packages.org/downloads",
-            "description": "Twenty Twenty-Five emphasizes simplicity and adaptability. It offers flexible design options, supported by a variety of patterns for different page types, such as services and landing pages, making it ideal for building personal blogs, professional portfolios, online magazines, or business websites. Its templates cater to various blog styles, from text-focused to image-heavy layouts. Additionally, it supports international typography and diverse color palettes, ensuring accessibility and customization for users worldwide.",
-            "homepage": "https://wordpress.org/themes/twentytwentyfive/",
+            "authors": [
+                {
+                    "name": "WP Engine"
+                }
+            ],
+            "description": "ACF helps customize WordPress with powerful, professional and intuitive fields. Proudly powering over 2 million sites, WordPress developers love ACF.",
+            "homepage": "https://www.advancedcustomfields.com",
             "support": {
-                "changelog": "https://wordpress.org/themes/twentytwentyfive/#developers",
-                "issues": "https://wordpress.org/support/theme/twentytwentyfive",
-                "source": "https://themes.svn.wordpress.org/twentytwentyfive"
+                "changelog": "https://wordpress.org/plugins/advanced-custom-fields/#developers",
+                "issues": "https://wordpress.org/support/plugin/advanced-custom-fields",
+                "source": "https://plugins.svn.wordpress.org/advanced-custom-fields"
             },
-            "time": "2026-05-20T21:56:34+00:00"
+            "time": "2026-06-02T16:45:46+00:00"
+        },
+        {
+            "name": "wp-plugin/autoptimize",
+            "version": "3.1.15.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/autoptimize/",
+                "reference": "tags/3.1.15.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/autoptimize.3.1.15.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Optimizing Matters"
+                }
+            ],
+            "description": "Autoptimize speeds up your website by optimizing JS, CSS, images (incl. lazy-load), HTML and Google Fonts, asyncing JS, removing emoji cruft and more.",
+            "homepage": "https://autoptimize.com/pro/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/autoptimize/#developers",
+                "issues": "https://wordpress.org/support/plugin/autoptimize",
+                "source": "https://plugins.svn.wordpress.org/autoptimize"
+            },
+            "time": "2026-04-04T07:45:37+00:00"
+        },
+        {
+            "name": "wp-plugin/breadcrumb-navxt",
+            "version": "7.5.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/breadcrumb-navxt/",
+                "reference": "tags/7.5.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/breadcrumb-navxt.7.5.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "John Havlik"
+                }
+            ],
+            "description": "Adds breadcrumb navigation showing the visitor's path to their current location.",
+            "homepage": "http://mtekk.us/code/breadcrumb-navxt/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/breadcrumb-navxt/#developers",
+                "issues": "https://wordpress.org/support/plugin/breadcrumb-navxt",
+                "source": "https://plugins.svn.wordpress.org/breadcrumb-navxt"
+            },
+            "time": "2026-03-23T19:23:21+00:00"
+        },
+        {
+            "name": "wp-plugin/classic-editor",
+            "version": "1.7.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/classic-editor/",
+                "reference": "tags/1.7.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.7.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "WordPress.org"
+                }
+            ],
+            "description": "Enables the previous \"classic\" editor and the old-style Edit Post screen with TinyMCE, Meta Boxes, etc. Supports all plugins that extend this screen.",
+            "homepage": "https://wordpress.org/plugins/classic-editor/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/classic-editor/#developers",
+                "issues": "https://wordpress.org/support/plugin/classic-editor",
+                "source": "https://plugins.svn.wordpress.org/classic-editor"
+            },
+            "time": "2026-05-28T01:55:49+00:00"
+        },
+        {
+            "name": "wp-plugin/classic-widgets",
+            "version": "0.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/classic-widgets/",
+                "reference": "tags/0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/classic-widgets.0.3.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Tonya Mork"
+                }
+            ],
+            "description": "Enables the previous \"classic\" widgets settings screens in Appearance - Widgets and the Customizer. Disables the block editor from managing widgets.",
+            "homepage": "https://wordpress.org/plugins/classic-widgets/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/classic-widgets/#developers",
+                "issues": "https://wordpress.org/support/plugin/classic-widgets",
+                "source": "https://plugins.svn.wordpress.org/classic-widgets"
+            },
+            "time": "2026-03-23T19:23:21+00:00"
+        },
+        {
+            "name": "wp-plugin/contact-form-7",
+            "version": "6.1.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/contact-form-7/",
+                "reference": "tags/6.1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/contact-form-7.6.1.6.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Rock Lobster Inc."
+                }
+            ],
+            "description": "Just another contact form plugin. Simple but flexible.",
+            "homepage": "https://contactform7.com/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/contact-form-7/#developers",
+                "issues": "https://wordpress.org/support/plugin/contact-form-7",
+                "source": "https://plugins.svn.wordpress.org/contact-form-7"
+            },
+            "time": "2026-05-15T03:01:03+00:00"
+        },
+        {
+            "name": "wp-plugin/elementor",
+            "version": "4.1.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/elementor/",
+                "reference": "tags/4.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/elementor.4.1.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Elementor"
+                }
+            ],
+            "description": "The Elementor Website Builder has it all: drag and drop page builder, Atomic Editor, pixel perfect design, global and reusable style systems, mobile r …",
+            "homepage": "https://elementor.com/?utm_source=wp-plugins&utm_campaign=plugin-uri&utm_medium=wp-dash",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/elementor/#developers",
+                "issues": "https://wordpress.org/support/plugin/elementor",
+                "source": "https://plugins.svn.wordpress.org/elementor"
+            },
+            "time": "2026-05-27T11:30:55+00:00"
+        },
+        {
+            "name": "wp-plugin/simple-custom-post-order",
+            "version": "2.7.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/simple-custom-post-order/",
+                "reference": "tags/2.7.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/simple-custom-post-order.2.7.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "colorlibplugins"
+                }
+            ],
+            "description": "Easily reorder posts, pages, custom post types, and taxonomies with intuitive drag-and-drop sorting in the WordPress admin.",
+            "homepage": "https://wordpress.org/plugins-wp/simple-custom-post-order/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/simple-custom-post-order/#developers",
+                "issues": "https://wordpress.org/support/plugin/simple-custom-post-order",
+                "source": "https://plugins.svn.wordpress.org/simple-custom-post-order"
+            },
+            "time": "2026-06-02T14:40:58+00:00"
+        },
+        {
+            "name": "wp-plugin/wordpress-seo",
+            "version": "27.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
+                "reference": "tags/27.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.27.7.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Yoast"
+                }
+            ],
+            "description": "Improve your SEO with real-time feedback, schema, and clear guidance. Upgrade for AI tools, Google Docs integration, and 24/7 support, no hidden fees.",
+            "homepage": "https://yoa.st/1uj",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/wordpress-seo/#developers",
+                "issues": "https://wordpress.org/support/plugin/wordpress-seo",
+                "source": "https://plugins.svn.wordpress.org/wordpress-seo"
+            },
+            "time": "2026-05-30T14:51:05+00:00"
+        },
+        {
+            "name": "wp-plugin/wp-mail-smtp",
+            "version": "4.8.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-mail-smtp/",
+                "reference": "tags/4.8.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.4.8.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Syed Balkhi"
+                }
+            ],
+            "description": "Make email delivery easy for WordPress. Connect with SMTP, Gmail, Outlook, SendGrid, Mailgun, SES, Zoho, + more. Rated #1 WordPress SMTP Email plugin.",
+            "homepage": "https://wpmailsmtp.com/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/wp-mail-smtp/#developers",
+                "issues": "https://wordpress.org/support/plugin/wp-mail-smtp",
+                "source": "https://plugins.svn.wordpress.org/wp-mail-smtp"
+            },
+            "time": "2026-04-16T15:16:32+00:00"
         }
     ],
     "packages-dev": [

@@ -38,7 +38,17 @@
     "roots/bedrock-disallow-indexing": "^2.0",
     "roots/wordpress": "7.0",
     "roots/wp-config": "^1.0",
-    "vlucas/phpdotenv": "^5.0"
+    "vlucas/phpdotenv": "^5.0",
+    "wp-plugin/advanced-custom-fields": "^6.8",
+    "wp-plugin/autoptimize": "^3.1",
+    "wp-plugin/breadcrumb-navxt": "^7.5",
+    "wp-plugin/classic-editor": "^1.7",
+    "wp-plugin/classic-widgets": "^0.3.0",
+    "wp-plugin/contact-form-7": "^6.1",
+    "wp-plugin/elementor": "^4.1",
+    "wp-plugin/simple-custom-post-order": "^2.7",
+    "wp-plugin/wordpress-seo": "^27.7",
+    "wp-plugin/wp-mail-smtp": "^4.8"
   },
   "require-dev": {
     "laravel/pint": "^1.0",
